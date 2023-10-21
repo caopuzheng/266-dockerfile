@@ -12,38 +12,38 @@ SHELL ["/bin/bash", "-c"]
 ##
 RUN dnf update --disablerepo=cuda -y && \
     dnf install \
-                # tensorrt-8.6.0.12-1.cuda11.8 \
-                cuda-command-line-tools-11-8 \
-                cuda-cudart-devel-11-8 \
-                cuda-nvcc-11-8 \
-                cuda-cupti-11-8 \
-                cuda-nvprune-11-8 \
-                cuda-nvrtc-11-8 \
-                libnvinfer-plugin8-8.6.0.12-1.cuda11.8 \
-                libnvinfer8-8.6.0.12-1.cuda11.8 \
-                unzip \
-                curl \
-                wget \
-                libcurl-devel \
-                gettext-devel \
-                expat-devel \
-                openssl-devel \
-                openssh-server \
-                openssh-clients \
-                bzip2-devel bzip2 \
-                xz-devel xz \
-                libffi-devel \
-                zlib-devel \
-                ncurses ncurses-devel \
-                readline-devel \
-                uuid \
-                tcl-devel tcl \
-                tk-devel tk \
-                sqlite-devel \
-                graphviz \
-                gdbm-devel gdbm \
-                procps-ng \
-                findutils -y && \
+    # tensorrt-8.6.0.12-1.cuda11.8 \
+    cuda-command-line-tools-11-8 \
+    cuda-cudart-devel-11-8 \
+    cuda-nvcc-11-8 \
+    cuda-cupti-11-8 \
+    cuda-nvprune-11-8 \
+    cuda-nvrtc-11-8 \
+    libnvinfer-plugin8-8.6.0.12-1.cuda11.8 \
+    libnvinfer8-8.6.0.12-1.cuda11.8 \
+    unzip \
+    curl \
+    wget \
+    libcurl-devel \
+    gettext-devel \
+    expat-devel \
+    openssl-devel \
+    openssh-server \
+    openssh-clients \
+    bzip2-devel bzip2 \
+    xz-devel xz \
+    libffi-devel \
+    zlib-devel \
+    ncurses ncurses-devel \
+    readline-devel \
+    uuid \
+    tcl-devel tcl \
+    tk-devel tk \
+    sqlite-devel \
+    graphviz \
+    gdbm-devel gdbm \
+    procps-ng \
+    findutils -y && \
     dnf clean all
 WORKDIR /opt/nodejs
 RUN curl https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.xz | xzcat | tar -xf -
@@ -66,81 +66,93 @@ RUN ln -s libnvrtc.so.11.8.89  libnvrtc.so \
     && mkdir -p /root/.ssh && chmod 700 /root/.ssh 
 RUN python3 -m pip install --no-cache-dir --upgrade pip
 RUN pip3 install --no-cache-dir \
-                certifi \
-                networkx \
-                Pillow \
-                numpy==1.26.0 \
-                bottleneck \
-                cmake 
+    certifi \
+    networkx \
+    Pillow \
+    numpy==1.26.0 \
+    bottleneck \
+    cmake 
 RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 RUN pip3 install --no-cache-dir /tmp/xgboost-1.7.6-cp311-cp311-linux_x86_64.whl
 RUN pip3 install --no-cache-dir \
-                # tensorflow requires numpy <= 1.24.3
-                # update to pandas-stubs requires numpy > 1.24
-                tensorflow==2.14.0 \
-                tensorflow-text \
-                tensorflow-datasets \
-                keras-nlp \
-                spacy \
-                spacy-lookups-data \
-                sentence-transformers \
-                #Pin datasets to 2.10.0 becuase of bug in evaluate
-                datasets==2.10.0 \
-                git+https://github.com/google-research/bleurt.git \
-                nltk \
-                ipython \
-                bokeh \
-                seaborn \
-                aiohttp[speedups] \
-                jupyterlab \
-                black[jupyter] \
-                matplotlib \
-                blake3 \
-                papermill[all] \
-                statsmodels \
-                psutil \
-                mypy \
-                pandas \
-                pyarrow \
-                polars[all] \
-                openpyxl \
-                apsw \
-                pydot \
-                plotly \
-                pydot-ng \
-                pydotplus \
-                graphviz \
-                beautifulsoup4 \
-                scikit-learn \
-                scikit-image \
-                sklearn-pandas \
-                lxml \
-                isort \
-                opencv-contrib-python-headless \
-                wordcloud \
-                dask[complete] \
-                ipyparallel \
-                mlxtend \
-                gensim \
-                transformers \
-                openai[wandb] \
-                wandb \
-                tiktoken \
-                sentencepiece \
-                ipywidgets \
-                jupyter_bokeh \
-                jupyter-server-proxy \
-                jupyter_http_over_ws \
-                jupyter-collaboration \
-                pyyaml \
-                yapf \
-                nbqa[toolchain] \
-                ruff \
-#                ploomber \
-                evaluate[template] \
-                pipdeptree \
-                hydra-core
+    # tensorflow requires numpy <= 1.24.3
+    # update to pandas-stubs requires numpy > 1.24
+    tensorflow==2.14.0 \
+    tensorflow-text \
+    tensorflow-datasets \
+    keras-nlp \
+    spacy \
+    spacy-lookups-data \
+    sentence-transformers \
+    #Pin datasets to 2.10.0 becuase of bug in evaluate
+    datasets==2.10.0 \
+    git+https://github.com/google-research/bleurt.git \
+    nltk \
+    ipython \
+    bokeh \
+    seaborn \
+    aiohttp[speedups] \
+    jupyterlab \
+    black[jupyter] \
+    matplotlib \
+    blake3 \
+    papermill[all] \
+    statsmodels \
+    psutil \
+    mypy \
+    pandas \
+    pyarrow \
+    polars[all] \
+    openpyxl \
+    apsw \
+    pydot \
+    plotly \
+    pydot-ng \
+    pydotplus \
+    graphviz \
+    beautifulsoup4 \
+    scikit-learn \
+    scikit-image \
+    sklearn-pandas \
+    lxml \
+    isort \
+    opencv-contrib-python-headless \
+    wordcloud \
+    dask[complete] \
+    ipyparallel \
+    mlxtend \
+    gensim \
+    transformers \
+    openai[wandb] \
+    wandb \
+    tiktoken \
+    sentencepiece \
+    ipywidgets \
+    jupyter_bokeh \
+    jupyter-server-proxy \
+    jupyter_http_over_ws \
+    jupyter-collaboration \
+    pyyaml \
+    yapf \
+    nbqa[toolchain] \
+    ruff \
+    #                ploomber \
+    zsh \
+    evaluate[template] \
+    pipdeptree \
+    hydra-core
 WORKDIR /root
+
+## do this before copy . . to make sure we override the default config
+## See: https://github.com/deluan/zsh-in-docker for more info
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+    -x \
+    -p git \
+    -p ssh-agent \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-syntax-highlighting \
+    -p https://github.com/zsh-users/zsh-completions
+
 COPY . .
 ENV TERM=xterm-256color
 ENV SHELL=/bin/bash
